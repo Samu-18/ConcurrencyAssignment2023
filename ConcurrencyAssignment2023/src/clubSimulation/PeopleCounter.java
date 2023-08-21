@@ -36,20 +36,30 @@ public class PeopleCounter {
 	}
    
   	//someone arrived outside
-	public void personArrived() {
-		peopleOutSide.getAndIncrement();
+	public synchronized void personArrived() {
+   if(peopleInside.get() < maxPeople.get()) {
+      peopleOutSide.getAndIncrement();
+   } else {
+       try{
+           wait(); //wait until there is space inside
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+		}
 	}
+  }
 	
 	//someone got inside
 	synchronized public void personEntered() {
 		peopleOutSide.getAndDecrement();
 		peopleInside.getAndIncrement();
+      notifyAll(); //Notify waiting threads that there is space inside
 	}
 
 	//someone left
 	synchronized public void personLeft() {
 		peopleInside.getAndDecrement();
 		peopleLeft.getAndIncrement();
+      notifyAll(); /*Notify waiting threads that there is space inside*/
 		
 	}
 	//too many people inside
@@ -65,4 +75,6 @@ public class PeopleCounter {
 		peopleOutSide.set(0);
 		peopleLeft.set(0);
 	}
+   
+  
 }
