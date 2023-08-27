@@ -1,11 +1,10 @@
 package clubSimulation;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-
-import clubSimulation.PeopleCounter;
+import static org.junit.Assert.assertEquals;
 
 public class PeopleCounterTest {
+
     @Test
     public void testPersonArrived() {
         PeopleCounter counter = new PeopleCounter(10);
@@ -28,7 +27,8 @@ public class PeopleCounterTest {
         assertEquals(0, counter.getInside());
         assertEquals(1, counter.getLeft());
     }
- @Test
+
+    @Test
     public void testConcurrentPeopleArrivalAndEntry() throws InterruptedException {
         final PeopleCounter counter = new PeopleCounter(10);
 
@@ -50,4 +50,4 @@ public class PeopleCounterTest {
 
         assertEquals(2, counter.getInside());
     }
-  }
+}

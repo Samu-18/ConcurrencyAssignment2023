@@ -53,11 +53,26 @@ public class Clubgoer extends Thread {
 
 	//check to see if user pressed pause button
 	private void checkPause() {
-		// THIS DOES NOTHING - MUST BE FIXED  	
+		// THIS DOES NOTHING - MUST BE FIXED 
+      while (ClubSimulation.pause.get()) {
+        try {
+            Thread.sleep(100); // Wait for a short interval before checking again
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
+        }
+    } 	
         
     }
 	private void startSim() {
-		// THIS DOES NOTHING - MUST BE FIXED  	
+		// THIS DOES NOTHING - MUST BE FIXED
+      //The fix
+       while (!ClubSimulation.started.get()) {
+        try {
+            Thread.sleep(100); // Wait for a short interval before checking again
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
+        }
+    }  	
         
     }
 	
@@ -127,14 +142,15 @@ public class Clubgoer extends Thread {
 			}
 		}
 	//leave club
-	private void leave() throws InterruptedException {
+	private  synchronized void leave() throws InterruptedException {
 		club.leaveClub(currentBlock,myLocation);		
 		inRoom=false;
 	}
 	
+   
 	public void run() {
-		try {
-			startSim(); 
+		try {	
+         startSim(); 
 			checkPause();
 			sleep(movingSpeed*(rand.nextInt(100)+1)); //arriving takes a while
 			checkPause();
@@ -189,5 +205,6 @@ public class Clubgoer extends Thread {
 		} catch (InterruptedException e1) {  //do nothing
 		}
 	}
+   //latch.countDown(); //release
 	
 }

@@ -13,6 +13,8 @@ import java.util.Random;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+
+
 public class ClubSimulation {
 	static int noClubgoers=20;
    	static int frameX=400;
@@ -21,6 +23,9 @@ public class ClubSimulation {
 	static int gridX=10; //number of x grids in club - default value if not provided on command line
 	static int gridY=10; //number of y grids in club - default value if not provided on command line
 	static int max=5; //max number of customers - default value if not provided on command line
+   
+   private static CountDownLatch latch;
+
 	
 	static Clubgoer[] patrons; // array for customer threads
 	static PeopleLocation [] peopleLocations;  //array to keep track of where customers are
@@ -91,7 +96,12 @@ public class ClubSimulation {
 		    		// THIS DOES NOTHING - MUST BE FIXED 
                /*The fix: added the pause flag*/
                pause.set(!pause.get());
-                	
+               // Update the button text based on the pause state
+                if (pause.get()) {
+                    pauseB.setText("Resume");
+                } else {
+                    pauseB.setText("Pause");
+                } 	
 		      }
 		    });
 			
@@ -120,6 +130,10 @@ public class ClubSimulation {
 
 	public static void main(String[] args) throws InterruptedException {
 		
+      /*create the latch*/
+
+      latch = new CountDownLatch(1);
+      
 		//deal with command line arguments if provided
 		if (args.length==4) {
 			noClubgoers=Integer.parseInt(args[0]);  //total people to enter room

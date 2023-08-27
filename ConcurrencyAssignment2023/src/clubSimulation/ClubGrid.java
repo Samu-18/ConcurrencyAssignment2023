@@ -15,6 +15,10 @@ public class ClubGrid {
 	private final static int minX =5;//minimum x dimension
 	private final static int minY =5;//minimum y dimension
 	
+   //
+   private final Object  entrancelock = new Object();
+   private boolean atCapacity = false; //indicator for club being at capacity
+   
 	private PeopleCounter counter;
 	
 	ClubGrid(int x, int y, int [] exitBlocks,PeopleCounter c) throws InterruptedException {
@@ -70,15 +74,23 @@ public class ClubGrid {
 		return true;
 	}
 	
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public GridBlock enterClub(PeopleLocation myLocation) throws InterruptedException  {
-		counter.personArrived(); //add to counter of people waiting 
+   //use of overcapacity method from club simulation
+      synchronized (entrance){
+      counter.personArrived(); //add to counter of people waiting
+      while((counter.getInside() >= counter.getMax()) || entrance.occupied())
+      {
+         entrance.wait();
+       }
+		 
 		entrance.get(myLocation.getID());
 		counter.personEntered(); //add to counter
 		myLocation.setLocation(entrance);
 		myLocation.setInRoom(true);
 		return entrance;
 	}
-	
+}
 	
 	public GridBlock move(GridBlock currentBlock,int step_x, int step_y,PeopleLocation myLocation) throws InterruptedException {  //try to move in 
 		
@@ -108,10 +120,14 @@ public class ClubGrid {
 	
 
 	public  void leaveClub(GridBlock currentBlock,PeopleLocation myLocation)   {
-			currentBlock.release();
+			
+         synchronized(entrance){
+         currentBlock.release();
 			counter.personLeft(); //add to counter
 			myLocation.setInRoom(false);
 			entrance.notifyAll();
+}
+             
 	}
 
 	public GridBlock getExit() {
