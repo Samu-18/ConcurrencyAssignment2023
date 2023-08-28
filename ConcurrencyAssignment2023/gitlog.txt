@@ -1,0 +1,60 @@
+$ git log
+commit b3a47a6473208150e7106b290fc4625af2e8aefc (HEAD -> main, origin/main)
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Mon Aug 28 15:47:26 2023 +0200
+
+    housekeeping
+
+commit e297a0aaaaae0d4bf0e5a4f5c405b3ecb5793c6b
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Mon Aug 28 15:33:06 2023 +0200
+
+    Makefile
+
+commit dddcb4fa2ac1d368fcc3a78a51836b83ded612fb
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Wed Aug 23 10:43:55 2023 +0200
+
+    housekeeping
+
+commit f6cacc035b6bec7b6b42cfe7267c4b72072d9b7a
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Tue Aug 22 01:25:35 2023 +0200
+
+    housekeeping
+:...skipping...
+commit b3a47a6473208150e7106b290fc4625af2e8aefc (HEAD -> main, origin/main)
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Mon Aug 21 15:47:26 2023 +0200
+
+    housekeeping
+
+commit e297a0aaaaae0d4bf0e5a4f5c405b3ecb5793c6b
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Mon Aug 21 15:33:06 2023 +0200
+
+    Makefile
+
+commit dddcb4fa2ac1d368fcc3a78a51836b83ded612fb
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Sun Aug 20 10:43:55 2023 +0200
+
+    housekeeping
+
+commit f6cacc035b6bec7b6b42cfe7267c4b72072d9b7a
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Tue Aug 17 01:25:35 2023 +0200
+
+    housekeeping
+
+commit 55c056d9c6def671ffdf24ef1af7db46d343a4f7
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Tue Aug 15 00:36:35 2023 +0200
+
+    housekeeping
+
+commit b718fb912fa106940dbb9331780e43b618c92ee1
+Author: Samu18 <samukelilewren@gmail.com>
+Date:   Mon Aug 14 21:06:51 2023 +0200
+
+    housekeeping
